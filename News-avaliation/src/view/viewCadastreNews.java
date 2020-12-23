@@ -36,6 +36,7 @@ public class viewCadastreNews extends javax.swing.JDialog {
         initComponents();
         this.newsController = new  NewsController();
         this.photoController  = new PhotoController();
+        this.blockAddPhoto();
     }
 
     /**
@@ -63,7 +64,7 @@ public class viewCadastreNews extends javax.swing.JDialog {
         handleSend = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         handleListCategory = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
+        addPhoto = new javax.swing.JPanel();
         handleAddPhoto = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jCodCategory = new javax.swing.JTextField();
@@ -183,7 +184,7 @@ public class viewCadastreNews extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jPanel4.setBackground(new java.awt.Color(33, 158, 188));
+        addPhoto.setBackground(new java.awt.Color(33, 158, 188));
 
         handleAddPhoto.setBackground(new java.awt.Color(33, 158, 188));
         handleAddPhoto.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -199,17 +200,17 @@ public class viewCadastreNews extends javax.swing.JDialog {
             }
         });
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout addPhotoLayout = new javax.swing.GroupLayout(addPhoto);
+        addPhoto.setLayout(addPhotoLayout);
+        addPhotoLayout.setHorizontalGroup(
+            addPhotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPhotoLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(handleAddPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+        addPhotoLayout.setVerticalGroup(
+            addPhotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPhotoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(handleAddPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -255,7 +256,7 @@ public class viewCadastreNews extends javax.swing.JDialog {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(addPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -303,14 +304,10 @@ public class viewCadastreNews extends javax.swing.JDialog {
                 .addComponent(jCodCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addPhoto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
         );
 
@@ -331,39 +328,59 @@ public class viewCadastreNews extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
     
     
-    private Boolean validateDate(String title, Date startDate, Date finalDate, String content){
+    private Boolean validateDate(String title, Date startDate, Date finalDate, String content, String cod){
         
-        if(title.trim().equals("")||  startDate.equals("") || finalDate.equals("")|| content.trim().equals("")){
+        if(title.trim().equals("")||  startDate.equals("") || finalDate.equals("")|| content.trim().equals("") || cod.trim().equals("")){
             return true;
         }
         
         return false;
     }
     
+    private void blockAddPhoto(){
+        handleAddPhoto.setVisible(false);
+        addPhoto.setVisible(false);
+    }
+    
+   private void  openAddPhoto(){
+       handleAddPhoto.setVisible(true);
+       addPhoto.setVisible(true);
+   }
+    
+   private void clearIpunts(){
+       jTitle.setText("");
+       dStartDate.setDate(null);
+       dFinalDate.setDate(null);
+       jCodCategory.setText("");
+       jContent.setText("");
+   }
+   
     private void handleSendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_handleSendMouseClicked
        String title = jTitle.getText();
        Date startDate  =  dStartDate.getDate();
        Date finalDate =   dFinalDate.getDate();
        String content =  jContent.getText();
        String cod = jCodCategory.getText();
-       int codConvert = Integer.parseInt(cod);
-       
-       Category category = new Category();
-       category.setId(codConvert);
-       news.setTitle(title);
-       news.setStartDate(startDate);
-       news.setFinalDate(finalDate);
-       news.setContent(content);
-       news.setCategory(category);
-
-       
-       
-       if(validateDate(title, startDate, finalDate, content)){
+    
+      
+       if(validateDate(title, startDate, finalDate, content, cod)){
            JOptionPane.showMessageDialog(null, "Preencha os campos obrigatorios", "Alert", JOptionPane.WARNING_MESSAGE);
        }else{
+           Integer codConvert = Integer.parseInt(cod);
+           Category category = new Category();
+           category.setId(codConvert);
+            
+            news.setTitle(title);
+            news.setStartDate(startDate);
+            news.setFinalDate(finalDate);
+            news.setContent(content);
+            news.setCategory(category);
+            
+           
            try {
                this.newsController.insert(news);
                JOptionPane.showMessageDialog(null, "Noticia inserida com sucesso");
+               openAddPhoto();
                
            } catch (Exception e) {
                e.getStackTrace();
@@ -392,6 +409,7 @@ public class viewCadastreNews extends javax.swing.JDialog {
              try {
                  this.photoController.insert(photo);
                   JOptionPane.showMessageDialog(null, "Foto inserida  com sucesso");
+                  clearIpunts();
                  
              } catch (Exception e) {
                  e.getStackTrace();
@@ -441,6 +459,7 @@ public class viewCadastreNews extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel addPhoto;
     private com.toedter.calendar.JDateChooser dFinalDate;
     private com.toedter.calendar.JDateChooser dStartDate;
     private javax.swing.JButton handleAddPhoto;
@@ -456,7 +475,6 @@ public class viewCadastreNews extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTitle;

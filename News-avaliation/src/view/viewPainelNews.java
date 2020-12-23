@@ -88,6 +88,11 @@ public class viewPainelNews extends javax.swing.JDialog {
         handleUpdateNews.setBackground(new java.awt.Color(255, 255, 255));
         handleUpdateNews.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(33, 158, 188)));
         handleUpdateNews.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        handleUpdateNews.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                handleUpdateNewsMouseClicked(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(33, 158, 188));
@@ -230,6 +235,11 @@ public class viewPainelNews extends javax.swing.JDialog {
         viewRemoveNews removeNews = new viewRemoveNews(null, true);
         removeNews.setVisible(true);
     }//GEN-LAST:event_handleDeleteNewsMouseClicked
+
+    private void handleUpdateNewsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_handleUpdateNewsMouseClicked
+        viewUpdateNews updateNews = new viewUpdateNews(null, true);
+        updateNews.setVisible(true);
+    }//GEN-LAST:event_handleUpdateNewsMouseClicked
 
     /**
      * @param args the command line arguments
